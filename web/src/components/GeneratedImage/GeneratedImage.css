@@ -1,0 +1,17 @@
+.image-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.image-container.loading .ImagePreview {
+    filter: grayscale(50%);
+    opacity: 0.5;
+}
+
+.spinner {
+    position: center;
+    width: 128px;
+    height: 128px;
+}

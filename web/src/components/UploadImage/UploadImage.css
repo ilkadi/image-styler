@@ -1,0 +1,12 @@
+/* UploadImage.css */
+
+.image-container.dragging {
+    width: 512px;
+    height: 512px;
+    border: 20px solid #d3e4ec;
+    background-color: #d6e3e6;
+}
+
+.file-input {
+    display: none;
+}

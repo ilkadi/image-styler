@@ -1,0 +1,63 @@
+# docker-compose.yml
+version: "3.8"
+
+x-client-env: &client-env
+  REACT_APP_API_HOST: "${REACT_APP_API_HOST}"
+  REACT_APP_API_HOST_PORT: "${REACT_APP_API_PORT}"
+
+x-api-env: &api-env
+  MODEL_SERVER_URL: ovms
+  MODEL_SERVER_PORT: "${OVMS_REST_PORT}"
+  CORS_FRONTEND_URL: localhost
+  CORS_FRONTEND_PORT: 3001
+
+
+services:
+  ovms:
+    container_name: ovms
+    hostname: ovms
+    image: openvino/model_server:latest
+    command: "/ie-serving-py/start_server.sh ie_serving config
+      --config_path /var/www/models/config.json
+      --port ${OVMS_PORT}
+      --rest_port ${OVMS_REST_PORT}
+      --log_level INFO"
+    restart: on-failure
+    networks:
+      - network
+    ports:
+      - "${OVMS_PORT}"
+      - "${OVMS_REST_PORT}"
+    volumes:
+      - ./model-server/models:/var/www/models
+
+  ovms-api:
+    container_name: ovms-api
+    build: ./ovms-api
+    command: uvicorn main:app --host 0.0.0.0 --port 3001
+    environment:
+      <<: *api-env
+    restart: on-failure
+    networks:
+      - network
+    ports:
+      - "${REACT_APP_API_PORT}:3001"
+    depends_on:
+      - ovms
+
+  web:
+    container_name: web
+    build: ./web
+    environment:
+      <<: *client-env
+    restart: on-failure
+    networks:
+      - network
+    ports:
+      - "${FRONTEND_PORT}:80"
+    depends_on:
+      - ovms-api
+
+networks:
+  network:
+    driver: bridge

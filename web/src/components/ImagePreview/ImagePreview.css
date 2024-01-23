@@ -1,0 +1,25 @@
+.image-container {
+    width: 512px;
+    height: 512px;
+    background-color: #f2f2f2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 20px solid #e4e4e4;
+}
+
+.image-container img {
+    max-width: 512px;
+    max-height: 512px;
+    width: auto;
+    height: auto;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    animation: spin 2s linear infinite;
+}
