@@ -3,6 +3,7 @@
 # Image Styler Web
 
 This project is the frontend for the Image Styler application. It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+TBD: tests!
 
 ## Getting Started
 
