@@ -3,7 +3,6 @@
 # Image Styler Web
 
 This project is the frontend for the Image Styler application. It was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-TBD: tests!
 
 ## Getting Started
 
@@ -78,9 +77,11 @@ Runs the app in development mode. Open [http://localhost:3000](http://localhost:
 
 ### `npm test`
 
-Launches the test runner in the interactive watch mode.
-TODO: Implement tests
-Note: Application tested with Postman
+Launches the test runner in the interactive watch mode. Our application uses Jest as the testing framework. We have implemented unit tests for everything to ensure they work as expected.
+
+While developing new features, we encourage writing tests to maintain the robustness of the application. This helps us catch and fix any issues early in the development process.
+
+Note: In addition to our unit tests, we also manually test our application with Postman to ensure the end-to-end functionality is working as expected.
 
 ### `npm run build`
 

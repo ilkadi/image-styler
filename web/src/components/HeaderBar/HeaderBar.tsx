@@ -38,7 +38,7 @@ const HeaderBar:  React.FC<HeaderBarProps> = ({ handleStyleChange }) => {
                     options={options}
                     placeholder='Loading styles...'
                     />
-                {isLoading && <img src={spinnerImage} className="bar-spinner" />}
+                {isLoading && <img src={spinnerImage} alt="Spinner" className="bar-spinner" />}
             </div>
         </header>
     );

@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { ErrorContext } from '../../context/ErrorContext';
 import './ErrorDisplay.css';
 
@@ -7,21 +7,26 @@ const ErrorDisplay = () => {
     const [hidden, setHidden] = useState(false);
 
     useEffect(() => {
+        let timer1: NodeJS.Timeout;
+        let timer2: NodeJS.Timeout;
         console.log(errorMessage);
 
         if (errorMessage) {
             setHidden(false);
 
-            const timer = setTimeout(() => {
+            timer1 = setTimeout(()  => {
                 setHidden(true);
 
                 // Wait for the transition to finish before clearing the error message
-                setTimeout(() => {
+                timer2 = setTimeout(() => {
                     setErrorMessage('');
                 }, 500);
             }, 3000);
 
-            return () => clearTimeout(timer);
+            return () => {
+                clearTimeout(timer1);
+                clearTimeout(timer2);
+            };
         }
     }, [errorMessage, setErrorMessage]);
 

@@ -4,6 +4,7 @@ import { ErrorContext } from '../context/ErrorContext';
 
 const useFileUpload = (onImageUpload: (url: string) => void, setIsLoading: (isLoading: boolean) => void) => {
     const [previewImage, setPreviewImage] = useState<string | null>(null);
+    console.log(useContext(ErrorContext))
     const { setErrorMessage } = useContext(ErrorContext);
 
     const processFile = async (file: File | undefined, selectedStyle: string | null) => {

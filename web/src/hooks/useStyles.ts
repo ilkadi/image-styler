@@ -15,12 +15,12 @@ const useStyles = () => {
             try {
                 const styles = await getStyles();
                 if (styles.length > 0) {
-                    setIsLoading(false);
                     setStyles(styles);
-                    clearInterval(intervalId);
                 } else {
-                    setStyles(['Loading styles']);
+                    setStyles(['Zero styles found']);
                 }
+                setIsLoading(false);
+                clearInterval(intervalId);
             } catch (error : any) {
                 console.error('Error loading a style:', error);
                 setError(error);
